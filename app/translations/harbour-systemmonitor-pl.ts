@@ -35,8 +35,8 @@
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="87"/>
-        <source>Kod źródłowy (GitHub) oficjalnej wersji</source>
-        <translation></translation>
+        <source>Source code (GitHub) of official version</source>
+        <translation>Kod źródłowy (GitHub) oficjalnej wersji</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="97"/>
@@ -75,7 +75,7 @@
     <message>
         <location filename="../qml/pages/BatteryPage.qml" line="166"/>
         <source>Battery charging rate</source>
-        <translation>Szybkość ładowywania baterii</translation>
+        <translation>Szybkość ładowania baterii</translation>
     </message>
 </context>
 <context>
@@ -180,7 +180,7 @@
     <message>
         <location filename="../qml/pages/CpuPage.qml" line="80"/>
         <source>Total</source>
-        <translation>Całkowite</translation>
+        <translation>Pełne</translation>
     </message>
     <message>
         <location filename="../qml/pages/CpuPage.qml" line="96"/>
@@ -243,22 +243,22 @@
     <message>
         <location filename="../qml/pages/DerivativeSettings.qml" line="46"/>
         <source>Automatic scale for Y on graph</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczne skalowanie wykresu</translation>
     </message>
     <message>
         <location filename="../qml/pages/DerivativeSettings.qml" line="47"/>
         <source>Scaled automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczne skalowanie wykresu</translation>
     </message>
     <message>
         <location filename="../qml/pages/DerivativeSettings.qml" line="47"/>
         <source>Scaled manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Ręczne skalowanie wykresu</translation>
     </message>
     <message>
         <location filename="../qml/pages/DerivativeSettings.qml" line="54"/>
         <source>Maximal Y on graph</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksymalna wartość na osi Y wykresu</translation>
     </message>
 </context>
 <context>
@@ -345,12 +345,12 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="244"/>
         <source>Wlan signal</source>
-        <translation type="unfinished"></translation>
+        <translation>Sygnał WLAN</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="258"/>
         <source>CPU temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>Temperatura procesora</translation>
     </message>
 </context>
 <context>
@@ -501,7 +501,7 @@ Opcja zmniejszania zostanie dodana w przyszłych wersjach.</translation>
     <message>
         <location filename="../qml/sysmon.qml" line="62"/>
         <source>1 minute</source>
-        <translation>1 minuta</translation>
+        <translation>1 minutę</translation>
     </message>
     <message>
         <location filename="../qml/sysmon.qml" line="66"/>
