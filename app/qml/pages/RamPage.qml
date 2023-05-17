@@ -7,10 +7,10 @@ Page {
 
     property int deepView: 12
     onDeepViewChanged: {
-        for (var i=0;i<depthModel.count;i++) {
+        for (var i = 0; i < depthModel.count; i++) {
             if (depthModel.get(i).interval == deepView) {
-                comboBoxDepthView.currentIndex = i;
-                break;
+                comboBoxDepthView.currentIndex = i
+                break
             }
         }
     }
@@ -18,22 +18,23 @@ Page {
     onOrientationTransitionRunningChanged: {
         if (!orientationTransitionRunning) {
             updateGraph()
+            isRotated = true
         }
     }
     function updateGraph() {
-        ramUsed.updateGraph();
-        swapUsed.updateGraph();
+        ramUsed.updateGraph()
+        swapUsed.updateGraph()
     }
 
     Connections {
         target: sysmon
         onDataUpdated: {
-            updateGraph();
+            updateGraph()
         }
     }
 
     Component.onCompleted: {
-        updateGraph();
+        updateGraph()
     }
 
     SilicaFlickable {
@@ -41,7 +42,9 @@ Page {
         anchors.fill: parent
         contentHeight: column.height
 
-        VerticalScrollDecorator { flickable: flickable }
+        VerticalScrollDecorator {
+            flickable: flickable
+        }
 
         Column {
             id: column
@@ -73,14 +76,14 @@ Page {
             SysMonGraph {
                 id: ramUsed
                 graphTitle: qsTr("RAM")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.RAMUsed]
                 dataAvg: true
                 dataDepth: deepView
                 scale: true
                 axisY.units: qsTr(" MiB")
-                valueConverter: function(value) {
-                    return (value/1024).toFixed(0);
+                valueConverter: function (value) {
+                    return (value / 1024).toFixed(0)
                 }
 
                 clickEnabled: false
@@ -89,14 +92,14 @@ Page {
             SysMonGraph {
                 id: swapUsed
                 graphTitle: qsTr("Swap")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.SwapUsed]
                 dataAvg: true
                 dataDepth: deepView
                 scale: true
                 axisY.units: qsTr(" MiB")
-                valueConverter: function(value) {
-                    return (value/1024).toFixed(0);
+                valueConverter: function (value) {
+                    return (value / 1024).toFixed(0)
                 }
 
                 clickEnabled: false

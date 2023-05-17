@@ -8,6 +8,19 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Wed May 17 2023 Arno Dekker <a-dekker.git@gmail.com> 0.6-53
+- Do not highlight graphs without childpages on mainpage when clicked
+- Redraw main page graphs if orientation on childpages changed
+
+* Mon Mar 13 2023 Arno Dekker <a-dekker.git@gmail.com> 0.6-52
+- Improved Polish translation by likot180
+
+* Thu Mar 09 2023 Arno Dekker <a-dekker.git@gmail.com> 0.6-51
+- Added Polish translation by likot180
+
+* Tue Feb 28 2023 Arno Dekker <a-dekker.git@gmail.com> 0.6-50
+- Added Swedish translation by eson57
+
 * Sat Jan 28 2023 Arno Dekker <a-dekker.git@gmail.com> 0.6-49
 - Force repaint graphs after losing focus to prevent empty graphs
 

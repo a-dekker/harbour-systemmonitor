@@ -29,6 +29,16 @@ Page {
         }
     }
 
+    onStatusChanged: {
+        if (status == PageStatus.Activating) {
+            if (isRotated) {
+                needUpdate = true
+                updateGraph()
+                isRotated = false
+            }
+        }
+    }
+
     function updateGraph() {
         if (page.active && needUpdate) {
             graphBattery.updateGraph()
@@ -110,7 +120,7 @@ Page {
             SysMonGraph {
                 id: graphBattery
                 graphTitle: qsTr("Battery charge")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.BatteryPercentage]
                 dataAvg: true
                 minY: 0
@@ -127,7 +137,7 @@ Page {
             SysMonGraph {
                 id: graphCpu
                 graphTitle: qsTr("CPU usage")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.CpuTotal]
                 dataAvg: true
                 minY: 0
@@ -144,13 +154,13 @@ Page {
             SysMonGraph {
                 id: graphRam
                 graphTitle: qsTr("RAM usage")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.RAMUsed]
                 dataAvg: true
                 scale: true
                 axisY.units: qsTr(" MiB")
-                valueConverter: function(value) {
-                    return (value/1024).toFixed(0)
+                valueConverter: function (value) {
+                    return (value / 1024).toFixed(0)
                 }
 
                 onClicked: pageStack.push(Qt.resolvedUrl("RamPage.qml"), {
@@ -161,7 +171,7 @@ Page {
             SysMonGraph {
                 id: graphCpuSleep
                 graphTitle: qsTr("CPU sleep")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.CpuSleep]
                 dataAvg: true
                 minY: 0
@@ -178,7 +188,7 @@ Page {
             SysMonGraph {
                 id: graphWlanTotal
                 graphTitle: qsTr("Wlan traffic")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.NetworkWlanRx, DataSource.NetworkWlanTx]
                 scale: true
                 axisY.units: qsTr(" KiB/s")
@@ -196,7 +206,7 @@ Page {
             SysMonGraph {
                 id: graphCellTotal
                 graphTitle: qsTr("Cell traffic")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.NetworkCellRx, DataSource.NetworkCellTx]
                 scale: true
                 axisY.units: qsTr(" KiB/s")
@@ -214,12 +224,13 @@ Page {
             SysMonGraph {
                 id: graphCellSignal1
                 graphTitle: qsTr("Cell signal (SIM 1)")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.SignalPerc1]
                 minY: 0
                 maxY: 100
                 axisY.units: " %"
                 dataAvg: true
+                clickEnabled: false
                 valueConverter: function (value) {
                     return (value).toFixed(0)
                 }
@@ -228,12 +239,13 @@ Page {
             SysMonGraph {
                 id: graphCellSignal2
                 graphTitle: qsTr("Cell signal (SIM 2)")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.SignalPerc2]
                 minY: 0
                 maxY: 100
                 axisY.units: " %"
                 dataAvg: true
+                clickEnabled: false
                 valueConverter: function (value) {
                     return (value).toFixed(0)
                 }
@@ -242,12 +254,13 @@ Page {
             SysMonGraph {
                 id: graphInternet
                 graphTitle: qsTr("Wlan signal")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.InternetPerc]
                 minY: 0
                 maxY: 100
                 axisY.units: " %"
                 dataAvg: true
+                clickEnabled: false
                 valueConverter: function (value) {
                     return (value).toFixed(0)
                 }
@@ -256,11 +269,12 @@ Page {
             SysMonGraph {
                 id: graphTemperature
                 graphTitle: qsTr("CPU temperature")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.TemperatureDeg]
                 scale: true
                 axisY.units: " °C"
                 dataAvg: true
+                clickEnabled: false
                 valueConverter: function (value) {
                     return (value).toFixed(0)
                 }

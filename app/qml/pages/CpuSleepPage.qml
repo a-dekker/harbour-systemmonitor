@@ -7,10 +7,10 @@ Page {
 
     property int deepView: 12
     onDeepViewChanged: {
-        for (var i=0;i<depthModel.count;i++) {
+        for (var i = 0; i < depthModel.count; i++) {
             if (depthModel.get(i).interval == deepView) {
-                comboBoxDepthView.currentIndex = i;
-                break;
+                comboBoxDepthView.currentIndex = i
+                break
             }
         }
     }
@@ -18,23 +18,24 @@ Page {
     onOrientationTransitionRunningChanged: {
         if (!orientationTransitionRunning) {
             updateGraph()
+            isRotated = true
         }
     }
     function updateGraph() {
-        graphCpuSleep.updateGraph();
-        graphSuspendSuccess.updateGraph();
-        graphSuspendFail.updateGraph();
+        graphCpuSleep.updateGraph()
+        graphSuspendSuccess.updateGraph()
+        graphSuspendFail.updateGraph()
     }
 
     Connections {
         target: sysmon
         onDataUpdated: {
-            updateGraph();
+            updateGraph()
         }
     }
 
     Component.onCompleted: {
-        updateGraph();
+        updateGraph()
     }
 
     SilicaFlickable {
@@ -42,7 +43,9 @@ Page {
         anchors.fill: parent
         contentHeight: column.height
 
-        VerticalScrollDecorator { flickable: flickable }
+        VerticalScrollDecorator {
+            flickable: flickable
+        }
 
         Column {
             id: column
@@ -74,49 +77,47 @@ Page {
             SysMonGraph {
                 id: graphCpuSleep
                 graphTitle: qsTr("CPU sleep")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.CpuSleep]
                 dataAvg: true
                 dataDepth: deepView
                 axisY.units: "%"
                 minY: 0
                 maxY: 100
-                valueConverter: function(value) {
-                    return value.toFixed(0);
+                valueConverter: function (value) {
+                    return value.toFixed(0)
                 }
 
                 clickEnabled: false
             }
 
-
             SysMonGraph {
                 id: graphSuspendSuccess
                 graphTitle: qsTr("Suspend: success")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.SuspendSuccess]
                 dataAvg: true
                 dataDepth: deepView
                 axisY.units: qsTr(" [1/h]")
                 scale: true
-                valueConverter: function(value) {
-                    return (value * 3600).toFixed(0);
+                valueConverter: function (value) {
+                    return (value * 3600).toFixed(0)
                 }
 
                 clickEnabled: false
             }
 
-
             SysMonGraph {
                 id: graphSuspendFail
                 graphTitle: qsTr("Suspend: failed")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.SuspendFail]
                 dataAvg: true
                 dataDepth: deepView
                 axisY.units: qsTr(" [1/h]")
                 scale: true
-                valueConverter: function(value) {
-                    return (value * 3600).toFixed(0);
+                valueConverter: function (value) {
+                    return (value * 3600).toFixed(0)
                 }
 
                 clickEnabled: false

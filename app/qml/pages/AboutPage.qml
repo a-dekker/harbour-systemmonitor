@@ -4,14 +4,19 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
+    onOrientationChanged: {
+        if (visible) {
+            isRotated = true
+        }
+    }
+
     // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {
         anchors.fill: parent
         contentWidth: parent.width
         contentHeight: column.height
 
-        VerticalScrollDecorator {
-        }
+        VerticalScrollDecorator {}
 
         Column {
             id: column
@@ -56,7 +61,7 @@ Page {
                 width: parent.width
                 color: Theme.primaryColor
                 font.pixelSize: Theme.fontSizeMedium
-                text: qsTr("You are able to see CPU, Memory, Battery and Traffic stats.")
+                text: qsTr("You are able to see CPU, Memory, Battery, Temperature, Signal and Traffic stats.")
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WordWrap
             }
@@ -65,10 +70,10 @@ Page {
                 color: Theme.primaryColor
                 font.pixelSize: Theme.fontSizeMedium
                 text: "<a href='#'>" + qsTr(
-                          "Web-site (OpenRepos) of official version") + "</a>"
+                          "Web-site (OpenRepos) of this version") + "</a>"
                 linkColor: Theme.highlightColor
                 onLinkActivated: Qt.openUrlExternally(
-                                     "https://openrepos.net/content/basil/system-monitor")
+                                     "https://openrepos.net/content/ade/system-monitor-fork")
             }
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter

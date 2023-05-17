@@ -47,6 +47,7 @@ INSTALLS += translations
 
 TRANSLATIONS = translations/harbour-systemmonitor-ru.ts \
                translations/harbour-systemmonitor-sv.ts \
+               translations/harbour-systemmonitor-pl.ts \
                translations/harbour-systemmonitor-zh_CN.ts
 
 # only include these files for translation:

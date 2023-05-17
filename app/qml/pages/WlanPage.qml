@@ -7,10 +7,10 @@ Page {
 
     property int deepView: 12
     onDeepViewChanged: {
-        for (var i=0;i<depthModel.count;i++) {
+        for (var i = 0; i < depthModel.count; i++) {
             if (depthModel.get(i).interval == deepView) {
-                comboBoxDepthView.currentIndex = i;
-                break;
+                comboBoxDepthView.currentIndex = i
+                break
             }
         }
     }
@@ -18,23 +18,24 @@ Page {
     onOrientationTransitionRunningChanged: {
         if (!orientationTransitionRunning) {
             updateGraph()
+            isRotated = true
         }
     }
 
     function updateGraph() {
-        wlanRx.updateGraph();
-        wlanTx.updateGraph();
+        wlanRx.updateGraph()
+        wlanTx.updateGraph()
     }
 
     Connections {
         target: sysmon
         onDataUpdated: {
-            updateGraph();
+            updateGraph()
         }
     }
 
     Component.onCompleted: {
-        updateGraph();
+        updateGraph()
     }
 
     SilicaFlickable {
@@ -42,7 +43,9 @@ Page {
         anchors.fill: parent
         contentHeight: column.height
 
-        VerticalScrollDecorator { flickable: flickable }
+        VerticalScrollDecorator {
+            flickable: flickable
+        }
 
         Column {
             id: column
@@ -74,15 +77,15 @@ Page {
             SysMonGraph {
                 id: wlanRx
                 graphTitle: qsTr("Received data")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.NetworkWlanRx]
                 dataDepth: deepView
                 scale: true
                 axisY.units: qsTr(" KiB/s")
                 //valueTotal: false
                 dataAvg: true
-                valueConverter: function(value) {
-                    return (value/1024.).toFixed(2);
+                valueConverter: function (value) {
+                    return (value / 1024.).toFixed(2)
                 }
 
                 clickEnabled: false
@@ -91,15 +94,15 @@ Page {
             SysMonGraph {
                 id: wlanTx
                 graphTitle: qsTr("Transmitted data")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.NetworkWlanTx]
                 dataDepth: deepView
                 scale: true
                 axisY.units: qsTr(" KiB/s")
                 //valueTotal: false
                 dataAvg: true
-                valueConverter: function(value) {
-                    return (value/1024.).toFixed(2);
+                valueConverter: function (value) {
+                    return (value / 1024.).toFixed(2)
                 }
 
                 clickEnabled: false

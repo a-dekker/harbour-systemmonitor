@@ -4,15 +4,16 @@ import "pages"
 import net.thecust.sysmon 1.0
 import Nemo.Configuration 1.0
 
-ApplicationWindow
-{
-    initialPage: Component { MainPage { } }
+ApplicationWindow {
+    initialPage: Component {
+        MainPage {}
+    }
     cover: Qt.resolvedUrl("pages/CoverPage.qml")
 
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-                         | Orientation.LandscapeInverted
-    _defaultPageOrientations: Orientation.Portrait | Orientation.Landscape
-    | Orientation.LandscapeInverted
+    allowedOrientations: defaultAllowedOrientations
+    _defaultPageOrientations: defaultAllowedOrientations
+    property bool isRotated: false
+    property int gHeight: Screen.width >= 1080 ? 350 : 200
 
     //TODO: combine all dconf settings here
     ConfigurationGroup {
@@ -32,6 +33,7 @@ ApplicationWindow
     }
 
     Component.onCompleted: {
+
         //console.log("Test", DataSource.CpuTotal);
     }
 
@@ -39,17 +41,8 @@ ApplicationWindow
         id: sysmon
 
         onDataUpdated: {
-            console.log("SystemMonitor dataUpdated");
+            console.log("SystemMonitor dataUpdated")
         }
-
-        /*
-        onDataLoaded: {
-            callback = data.callback;
-            if (callback) {
-                callback();
-            }
-        }
-        */
     }
 
     ListModel {
@@ -100,7 +93,7 @@ ApplicationWindow
         id: depthModel
         ListElement {
             label: qsTr("1 hour")
-            interval:  1
+            interval: 1
         }
         ListElement {
             label: qsTr("4 hours")

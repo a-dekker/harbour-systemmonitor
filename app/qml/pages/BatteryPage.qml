@@ -7,10 +7,10 @@ Page {
 
     property int deepView: 12
     onDeepViewChanged: {
-        for (var i=0;i<depthModel.count;i++) {
+        for (var i = 0; i < depthModel.count; i++) {
             if (depthModel.get(i).interval == deepView) {
-                comboBoxDepthView.currentIndex = i;
-                break;
+                comboBoxDepthView.currentIndex = i
+                break
             }
         }
     }
@@ -18,28 +18,29 @@ Page {
     onOrientationTransitionRunningChanged: {
         if (!orientationTransitionRunning) {
             updateGraph()
+            isRotated = true
         }
     }
 
     function updateGraph() {
-        graphBattery.updateGraph();
-//        graphCpuSleep.updateGraph();
-        graphBatteryDischarge.updateGraph();
-        graphBatteryCharge.updateGraph();
+        graphBattery.updateGraph()
+        //        graphCpuSleep.updateGraph();
+        graphBatteryDischarge.updateGraph()
+        graphBatteryCharge.updateGraph()
     }
 
     Connections {
         target: sysmon
         onDataUpdated: {
-            updateGraph();
+            updateGraph()
         }
     }
 
     Component.onCompleted: {
-//        page.deepViewChanged.connect(function() {
-//            updateGraph();
-//        });
-        updateGraph();
+        //        page.deepViewChanged.connect(function() {
+        //            updateGraph();
+        //        });
+        updateGraph()
     }
 
     SilicaFlickable {
@@ -47,7 +48,9 @@ Page {
         anchors.fill: parent
         contentHeight: column.height
 
-        VerticalScrollDecorator { flickable: flickable }
+        VerticalScrollDecorator {
+            flickable: flickable
+        }
 
         Column {
             id: column
@@ -79,42 +82,25 @@ Page {
             SysMonGraph {
                 id: graphBattery
                 graphTitle: qsTr("Battery charge")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.BatteryPercentage]
                 dataAvg: true
                 dataDepth: deepView
                 axisY.units: "%"
                 minY: 0
                 maxY: 100
-                valueConverter: function(value) {
-                    return value.toFixed(0);
+                valueConverter: function (value) {
+                    return value.toFixed(0)
                 }
 
                 clickEnabled: false
             }
 
-//            SysMonGraph {
-//                id: graphCpuSleep
-//                graphTitle: qsTr("CPU sleep")
-//                graphHeight: Screen.width >= 1080 ? 350 : 200
-//                dataType: [DataSource.CpuSleep]
-//                dataAvg: true
-//                dataDepth: deepView
-//                axisY.units: "%"
-//                minY: 0
-//                maxY: 100
-//                valueConverter: function(value) {
-//                    return value.toFixed(0);
-//                }
-
-//                clickEnabled: false
-//            }
-
             SysMonGraph {
                 id: graphBatteryDischarge
 
                 graphTitle: qsTr("Battery discharging rate")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.BatteryPercentage]
                 dataAvg: true
                 dataDerivative: true
@@ -125,8 +111,8 @@ Page {
                 axisY.units: qsTr(" [%/h]")
                 scale: false
                 maxY: 10
-                valueConverter: function(value) {
-                    return value.toFixed(2);
+                valueConverter: function (value) {
+                    return value.toFixed(2)
                 }
 
                 Component.onCompleted: {
@@ -144,27 +130,28 @@ Page {
                 }
 
                 onClicked: {
-                    var dialog = pageStack.push( Qt.resolvedUrl("DerivativeSettings.qml"),
-                                                { "dialogTitle": "Battery discharging rate",
+                    var dialog = pageStack.push(Qt.resolvedUrl(
+                                                    "DerivativeSettings.qml"), {
+                                                    "dialogTitle": "Battery discharging rate",
                                                     "minDt": dataDerivativeMinDt,
                                                     "minChange": dataDerivativeMinChange,
                                                     "autoScale": scale,
                                                     "maxY": maxY
                                                 })
-                    dialog.accepted.connect( function() {
+                    dialog.accepted.connect(function () {
                         dataDerivativeMinDt = dialog.minDt
                         dataDerivativeMinChange = dialog.minChange
                         maxY = dialog.maxY
                         scale = dialog.autoScale
-                        graphBatteryDischarge.updateGraph();
-                    } )
+                        graphBatteryDischarge.updateGraph()
+                    })
                 }
             }
 
             SysMonGraph {
                 id: graphBatteryCharge
                 graphTitle: qsTr("Battery charging rate")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.BatteryPercentage]
                 dataAvg: true
                 dataDerivative: true
@@ -174,8 +161,8 @@ Page {
                 dataDepth: deepView
                 axisY.units: qsTr(" [%/h]")
                 scale: true
-                valueConverter: function(value) {
-                    return value.toFixed(2);
+                valueConverter: function (value) {
+                    return value.toFixed(2)
                 }
 
                 clickEnabled: false

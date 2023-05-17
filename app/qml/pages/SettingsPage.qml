@@ -8,30 +8,36 @@ Page {
     property int databaseUnits: 0
 
     Component.onCompleted: {
-        updateDatabaseInfo();
-        updateIntervaChanged();
-        archiveLengthChanged();
+        updateDatabaseInfo()
+        updateIntervaChanged()
+        archiveLengthChanged()
+    }
+
+    onOrientationChanged: {
+        if (visible) {
+            isRotated = true
+        }
     }
 
     function updateDatabaseInfo() {
-        databaseUnits = sysmon.getUnitsCollected();
-        databaseSize = sysmon.getDatabaseSize();
+        databaseUnits = sysmon.getUnitsCollected()
+        databaseSize = sysmon.getDatabaseSize()
     }
 
     function updateIntervaChanged() {
-        for (var i=0;i<timeModel.count;i++) {
+        for (var i = 0; i < timeModel.count; i++) {
             if (timeModel.get(i).interval == settings.updateInterval) {
-                comboBoxUpdateInterval.currentIndex = i;
-                break;
+                comboBoxUpdateInterval.currentIndex = i
+                break
             }
         }
     }
 
     function archiveLengthChanged() {
-        for (var i=0;i<archiveModel.count;i++) {
+        for (var i = 0; i < archiveModel.count; i++) {
             if (archiveModel.get(i).interval == settings.archiveLength) {
-                comboBoxArchiveLength.currentIndex = i;
-                break;
+                comboBoxArchiveLength.currentIndex = i
+                break
             }
         }
     }
@@ -42,14 +48,18 @@ Page {
         onArchiveLengthChanged: archiveLengthChanged()
     }
 
-    RemorsePopup { id: remorse }
+    RemorsePopup {
+        id: remorse
+    }
 
     SilicaFlickable {
         id: flickable
         anchors.fill: parent
         contentHeight: column.height
 
-        VerticalScrollDecorator { flickable: flickable }
+        VerticalScrollDecorator {
+            flickable: flickable
+        }
 
         Column {
             id: column
@@ -63,14 +73,16 @@ Page {
             TextSwitch {
                 checked: sysmon.enabled
                 text: qsTr("Enable service")
-                description: sysmon.enabled ? qsTr("Service is running now") : qsTr("Service is stopped")
+                description: sysmon.enabled ? qsTr("Service is running now") : qsTr(
+                                                  "Service is stopped")
                 onClicked: sysmon.setEnabled(checked)
             }
 
             TextSwitch {
                 checked: sysmon.autorun
                 text: qsTr("Autorun on system boot")
-                description: sysmon.autorun ? qsTr("Service will autorun on system boot") : qsTr("Service should be launched manually")
+                description: sysmon.autorun ? qsTr("Service will autorun on system boot") : qsTr(
+                                                  "Service should be launched manually")
                 onClicked: sysmon.setAutorun(checked)
             }
 
@@ -124,7 +136,7 @@ Page {
                     color: Theme.highlightColor
                 }
                 Label {
-                    text: qsTr("%1 KiB").arg(databaseSize/1024);
+                    text: qsTr("%1 KiB").arg(databaseSize / 1024)
                     color: Theme.primaryColor
                 }
             }
@@ -144,7 +156,7 @@ Page {
                     color: Theme.highlightColor
                 }
                 Label {
-                    text: qsTr("%1").arg(databaseUnits);
+                    text: qsTr("%1").arg(databaseUnits)
                     color: Theme.primaryColor
                 }
             }
@@ -165,10 +177,10 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: qsTr("Clear all data")
                 onClicked: {
-                    remorse.execute("Clearing archive data", function() {
-                        sysmon.clearData();
-                        updateDatabaseInfo();
-                    });
+                    remorse.execute("Clearing archive data", function () {
+                        sysmon.clearData()
+                        updateDatabaseInfo()
+                    })
                 }
             }
         }

@@ -18,6 +18,7 @@ Page {
     onOrientationTransitionRunningChanged: {
         if (!orientationTransitionRunning) {
             updateGraph()
+            isRotated = true
         }
     }
 
@@ -78,7 +79,7 @@ Page {
             SysMonGraph {
                 id: cpuTotal
                 graphTitle: qsTr("Total")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.CpuTotal]
                 dataAvg: true
                 dataDepth: deepView
@@ -94,7 +95,7 @@ Page {
             SysMonGraph {
                 id: cpuUser
                 graphTitle: qsTr("User processes")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.CpuUser]
                 dataAvg: true
                 dataDepth: deepView
@@ -110,7 +111,7 @@ Page {
             SysMonGraph {
                 id: cpuSystem
                 graphTitle: qsTr("System processes")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.CpuSystem]
                 dataAvg: true
                 dataDepth: deepView
@@ -126,7 +127,7 @@ Page {
             SysMonGraph {
                 id: cpuIO
                 graphTitle: qsTr("IO wait")
-                graphHeight: Screen.width >= 1080 ? 350 : 200
+                graphHeight: gHeight
                 dataType: [DataSource.CpuIO]
                 dataAvg: true
                 dataDepth: deepView
