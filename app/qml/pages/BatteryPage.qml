@@ -24,7 +24,6 @@ Page {
 
     function updateGraph() {
         graphBattery.updateGraph()
-        //        graphCpuSleep.updateGraph();
         graphBatteryDischarge.updateGraph()
         graphBatteryCharge.updateGraph()
     }
@@ -37,9 +36,6 @@ Page {
     }
 
     Component.onCompleted: {
-        //        page.deepViewChanged.connect(function() {
-        //            updateGraph();
-        //        });
         updateGraph()
     }
 

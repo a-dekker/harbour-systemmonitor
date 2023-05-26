@@ -44,7 +44,8 @@ Dialog {
             TextSwitch {
                 checked: autoScale
                 text: qsTr("Automatic scale for Y on graph")
-                description: autoScale ? qsTr("Scaled automatically") : qsTr("Scaled manually")
+                description: autoScale ? qsTr("Scaled automatically") : qsTr(
+                                             "Scaled manually")
                 onClicked: autoScale = checked
             }
 
@@ -60,10 +61,11 @@ Dialog {
     }
 
     onDone: {
-        if (valueMinDt.acceptableInput) minDt = parseFloat(valueMinDt.text)
-        if (valueMinChange.acceptableInput) minChange = parseFloat(valueMinChange.text)
-        if (valueMaxY.acceptableInput) maxY = parseFloat(valueMaxY.text)
+        if (valueMinDt.acceptableInput)
+            minDt = parseFloat(valueMinDt.text)
+        if (valueMinChange.acceptableInput)
+            minChange = parseFloat(valueMinChange.text)
+        if (valueMaxY.acceptableInput)
+            maxY = parseFloat(valueMaxY.text)
     }
-
 }
-

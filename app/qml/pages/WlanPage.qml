@@ -82,7 +82,6 @@ Page {
                 dataDepth: deepView
                 scale: true
                 axisY.units: qsTr(" KiB/s")
-                //valueTotal: false
                 dataAvg: true
                 valueConverter: function (value) {
                     return (value / 1024.).toFixed(2)
@@ -99,7 +98,6 @@ Page {
                 dataDepth: deepView
                 scale: true
                 axisY.units: qsTr(" KiB/s")
-                //valueTotal: false
                 dataAvg: true
                 valueConverter: function (value) {
                     return (value / 1024.).toFixed(2)

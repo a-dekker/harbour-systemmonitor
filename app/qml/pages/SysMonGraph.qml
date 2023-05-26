@@ -13,21 +13,23 @@ GraphData {
 
     onDataDepthChanged: {
         if (dataSource) {
-            updateGraph();
+            updateGraph()
         }
     }
 
     //TODO: really such a thing?
     onDataAvgChanged: {
-        valueTotal = !dataAvg;
+        valueTotal = !dataAvg
     }
 
     function updateGraph() {
-        var dataPoints = dataSource.getSystemGraph(dataType, dataDepth, graphWidth, dataAvg);
-        if (dataDerivative) dataPoints = dataSource.calculateDerivative(dataPoints,
-                                                                        dataDerivativeTimeUnit,
-                                                                        dataDerivativeMinDt,
-                                                                        dataDerivativeMinChange);
-        setPoints(dataPoints);
+        var dataPoints = dataSource.getSystemGraph(dataType, dataDepth,
+                                                   graphWidth, dataAvg)
+        if (dataDerivative)
+            dataPoints = dataSource.calculateDerivative(dataPoints,
+                                                        dataDerivativeTimeUnit,
+                                                        dataDerivativeMinDt,
+                                                        dataDerivativeMinChange)
+        setPoints(dataPoints)
     }
 }

@@ -10,26 +10,26 @@ CoverBackground {
     property bool needUpdate: true
     property bool active: status == Cover.Active
     onActiveChanged: {
-        updateGraph();
+        updateGraph()
     }
 
     function nextGraph() {
-        needUpdate = true;
-        settings.coverGraphNum = (settings.coverGraphNum+1)%9
+        needUpdate = true
+        settings.coverGraphNum = (settings.coverGraphNum + 1) % 9
     }
 
     function updateGraph() {
         if (active && needUpdate) {
-            currentGraph.item.updateGraph();
-            needUpdate = false;
+            currentGraph.item.updateGraph()
+            needUpdate = false
         }
     }
 
     Connections {
         target: sysmon
         onDataUpdated: {
-            needUpdate = true;
-            updateGraph();
+            needUpdate = true
+            updateGraph()
         }
     }
 
@@ -48,31 +48,30 @@ CoverBackground {
                 right: parent.right
             }
             sourceComponent: {
-                switch(settings.coverGraphNum){
+                switch (settings.coverGraphNum) {
                 case 0:
-                    return cpuGraph;
+                    return cpuGraph
                 case 1:
-                    return networkGraph;
+                    return networkGraph
                 case 2:
-                    return ramGraph;
+                    return ramGraph
                 case 3:
-                    return batteryGraph;
+                    return batteryGraph
                 case 4:
-                    return cpuSleepGraph;
+                    return cpuSleepGraph
                 case 5:
-                    return temperatureGraph;
+                    return temperatureGraph
                 case 6:
-                    return cellSignalGraph1;
+                    return cellSignalGraph1
                 case 7:
-                    return cellSignalGraph2;
+                    return cellSignalGraph2
                 case 8:
-                    return internetGraph;
-
+                    return internetGraph
                 }
             }
             onStatusChanged: {
                 if (status == Loader.Ready) {
-                    updateGraph();
+                    updateGraph()
                 }
             }
         }
@@ -84,7 +83,7 @@ CoverBackground {
         CoverAction {
             iconSource: "image://theme/icon-m-levels"
             onTriggered: {
-                nextGraph();
+                nextGraph()
             }
         }
     }
@@ -101,8 +100,8 @@ CoverBackground {
             axisX.grid: 1
             minY: 0
             maxY: 100
-            valueConverter: function(value) {
-                return value.toFixed(1);
+            valueConverter: function (value) {
+                return value.toFixed(1)
             }
             clickEnabled: false
         }
@@ -114,16 +113,13 @@ CoverBackground {
         SysMonGraph {
             graphTitle: qsTr("NET")
             graphHeight: coverGraphHeight
-            dataType: [DataSource.NetworkCellRx,
-                DataSource.NetworkCellTx,
-                DataSource.NetworkWlanRx,
-                DataSource.NetworkWlanTx]
+            dataType: [DataSource.NetworkCellRx, DataSource.NetworkCellTx, DataSource.NetworkWlanRx, DataSource.NetworkWlanTx]
             dataDepth: 1
             scale: true
             axisX.grid: 1
             axisY.units: qsTr("KiB/s")
-            valueConverter: function(value) {
-                return (value/1024).toFixed(0);
+            valueConverter: function (value) {
+                return (value / 1024).toFixed(0)
             }
             clickEnabled: false
         }
@@ -141,8 +137,8 @@ CoverBackground {
             scale: true
             axisX.grid: 1
             axisY.units: qsTr("MiB")
-            valueConverter: function(value) {
-                return (value/1024).toFixed(0);
+            valueConverter: function (value) {
+                return (value / 1024).toFixed(0)
             }
             clickEnabled: false
         }
@@ -160,8 +156,8 @@ CoverBackground {
             axisX.grid: 1
             minY: 0
             maxY: 100
-            valueConverter: function(value) {
-                return value.toFixed(0);
+            valueConverter: function (value) {
+                return value.toFixed(0)
             }
 
             clickEnabled: false
@@ -180,8 +176,8 @@ CoverBackground {
             axisX.grid: 1
             minY: 0
             maxY: 100
-            valueConverter: function(value) {
-                return value.toFixed(0);
+            valueConverter: function (value) {
+                return value.toFixed(0)
             }
 
             clickEnabled: false
@@ -201,8 +197,8 @@ CoverBackground {
             minY: 0
             maxY: 100
             axisY.units: "°C"
-            valueConverter: function(value) {
-                return value.toFixed(0);
+            valueConverter: function (value) {
+                return value.toFixed(0)
             }
 
             clickEnabled: false
@@ -222,8 +218,8 @@ CoverBackground {
             minY: 0
             maxY: 100
             axisY.units: "%"
-            valueConverter: function(value) {
-                return value.toFixed(0);
+            valueConverter: function (value) {
+                return value.toFixed(0)
             }
 
             clickEnabled: false
@@ -243,8 +239,8 @@ CoverBackground {
             minY: 0
             maxY: 100
             axisY.units: "%"
-            valueConverter: function(value) {
-                return value.toFixed(0);
+            valueConverter: function (value) {
+                return value.toFixed(0)
             }
 
             clickEnabled: false
@@ -264,8 +260,8 @@ CoverBackground {
             minY: 0
             maxY: 100
             axisY.units: "%"
-            valueConverter: function(value) {
-                return value.toFixed(0);
+            valueConverter: function (value) {
+                return value.toFixed(0)
             }
 
             clickEnabled: false
