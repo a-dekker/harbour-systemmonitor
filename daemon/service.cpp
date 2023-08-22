@@ -9,6 +9,7 @@
 #include "datasourcetemp.h"
 #include "datasourcesignal.h"
 #include "datasourceinternet.h"
+#include "datasourcezram.h"
 
 Service::Service(QObject *parent, Settings *settings) :
     SystemSnapshot(parent), m_settings(settings)
@@ -39,6 +40,7 @@ void Service::initDataSources()
     m_sources.append(new DataSourceTemp(this));
     m_sources.append(new DataSourceSignal(this));
     m_sources.append(new DataSourceInternet(this));
+    m_sources.append(new DataSourceZram(this));
 
     foreach(const DataSource* source, m_sources) {
         connect(source, SIGNAL(systemDataGathered(DataSource::Type,float))

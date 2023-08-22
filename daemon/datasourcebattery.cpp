@@ -2,7 +2,6 @@
 
 #include <QDebug>
 #include <QDir>
-#include <QFile>
 #include <QString>
 
 DataSourceBattery::DataSourceBattery(SystemSnapshot *parent) :

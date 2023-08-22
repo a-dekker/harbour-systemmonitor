@@ -24,6 +24,7 @@ Page {
     function updateGraph() {
         ramUsed.updateGraph()
         swapUsed.updateGraph()
+        zramUsed.updateGraph()
     }
 
     Connections {
@@ -85,7 +86,6 @@ Page {
                 valueConverter: function (value) {
                     return (value / 1024).toFixed(0)
                 }
-
                 clickEnabled: false
             }
 
@@ -101,7 +101,21 @@ Page {
                 valueConverter: function (value) {
                     return (value / 1024).toFixed(0)
                 }
+                clickEnabled: false
+            }
 
+            SysMonGraph {
+                id: zramUsed
+                graphTitle: qsTr("ZRAM (actual compressed swap)")
+                graphHeight: gHeight
+                dataType: [DataSource.ZRAMUsed]
+                dataAvg: true
+                dataDepth: deepView
+                scale: true
+                axisY.units: qsTr(" MiB")
+                valueConverter: function (value) {
+                    return (value / 1024 / 1024).toFixed(0)
+                }
                 clickEnabled: false
             }
         }

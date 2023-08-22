@@ -8,6 +8,9 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Tue aug 22 2023 Arno Dekker <a-dekker.git@gmail.com> 0.6-54
+- Added zram swap graph to RAM usage page
+
 * Wed May 17 2023 Arno Dekker <a-dekker.git@gmail.com> 0.6-53
 - Do not highlight graphs without childpages on mainpage when clicked
 - Redraw main page graphs if orientation on childpages changed

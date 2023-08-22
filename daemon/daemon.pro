@@ -28,7 +28,8 @@ SOURCES += \
     datasourcesuspend.cpp \
     datasourcetemp.cpp \
     datasourcesignal.cpp \
-    datasourceinternet.cpp
+    datasourceinternet.cpp \
+    datasourcezram.cpp
 
 HEADERS += \
     settings.h \
@@ -47,7 +48,8 @@ HEADERS += \
     datasourcesuspend.h \
     datasourcetemp.h \
     datasourcesignal.h \
-    datasourceinternet.h
+    datasourceinternet.h \
+    datasourcezram.h
 
 INSTALLS += target sysmond
 

@@ -23,6 +23,7 @@ public:
         CpuSystem,
         CpuIO,
         RAMUsed = 200,
+        ZRAMUsed,
         RAMCached,
         RAMBuffers,
         SwapUsed = 250,
