@@ -21,12 +21,12 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="64"/>
         <source>You are able to see CPU, Memory, Battery, Temperature, Signal and Traffic stats.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du kan se statistik över processor, minne, batteri, temperatur, signal och trafik.</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="72"/>
         <source>Web-site (OpenRepos) of this version</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbplats (OpenRepos) för denna version</translation>
     </message>
     <message>
         <source>You are able to see CPU, Memory, Battery and Traffic stats.</source>
@@ -393,7 +393,7 @@
     <message>
         <location filename="../qml/pages/RamPage.qml" line="109"/>
         <source>ZRAM (actual compressed swap)</source>
-        <translation type="unfinished"></translation>
+        <translation>ZRAM (faktisk komprimerad swap-fil)</translation>
     </message>
 </context>
 <context>
